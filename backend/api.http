@@ -1,0 +1,173 @@
+### Learning Management System API Tests
+### Base URL
+@baseUrl = http://localhost:5000
+@token = your_jwt_token_here
+
+### ============ AUTH ENDPOINTS ============
+
+### 1. Register User
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123",
+  "name": "John Doe"
+}
+
+### 2. Register Another User (Instructor)
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "instructor@example.com",
+  "password": "password456",
+  "name": "Jane Smith"
+}
+
+### 3. Login User
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+### 4. Get Profile (Requires Token)
+GET {{baseUrl}}/api/auth/profile
+Authorization: Bearer {{token}}
+
+### ============ COURSE ENDPOINTS ============
+
+### 5. Get All Courses
+GET {{baseUrl}}/api/courses
+
+### 6. Get Course by ID
+GET {{baseUrl}}/api/courses/1
+
+### 7. Create Course (Requires Token)
+POST {{baseUrl}}/api/courses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Introduction to Web Development",
+  "description": "Learn HTML, CSS, and JavaScript basics",
+  "instructor_id": 1
+}
+
+### 8. Create Another Course
+POST {{baseUrl}}/api/courses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Advanced React.js",
+  "description": "Master React hooks, context, and state management",
+  "instructor_id": 1
+}
+
+### 9. Create Third Course
+POST {{baseUrl}}/api/courses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Node.js Backend Development",
+  "description": "Build scalable APIs with Node.js and Express",
+  "instructor_id": 2
+}
+
+### 10. Update Course (Requires Token)
+PUT {{baseUrl}}/api/courses/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Introduction to Web Development - Updated",
+  "description": "Learn HTML, CSS, JavaScript, and modern web development"
+}
+
+### 11. Delete Course (Requires Token)
+DELETE {{baseUrl}}/api/courses/3
+Authorization: Bearer {{token}}
+
+### ============ PROGRESS ENDPOINTS ============
+
+### 12. Get User Progress (Requires Token)
+GET {{baseUrl}}/api/progress/user/1
+Authorization: Bearer {{token}}
+
+### 13. Get Progress for Specific Course (Requires Token)
+GET {{baseUrl}}/api/progress/user/1/course/1
+Authorization: Bearer {{token}}
+
+### 14. Update Progress - Start Course (Requires Token)
+PUT {{baseUrl}}/api/progress/user/1/course/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "completed_lessons": 2,
+  "completion_percentage": 25
+}
+
+### 15. Update Progress - Midway (Requires Token)
+PUT {{baseUrl}}/api/progress/user/1/course/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "completed_lessons": 5,
+  "completion_percentage": 50
+}
+
+### 16. Update Progress - Complete Course (Requires Token)
+PUT {{baseUrl}}/api/progress/user/1/course/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "completed_lessons": 10,
+  "completion_percentage": 100
+}
+
+### 17. Update Progress for Another Course (Requires Token)
+PUT {{baseUrl}}/api/progress/user/1/course/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "completed_lessons": 3,
+  "completion_percentage": 15
+}
+
+### 18. Delete Progress (Requires Token)
+DELETE {{baseUrl}}/api/progress/user/1/course/2
+Authorization: Bearer {{token}}
+
+### 19. Get All Progress for User 2 (Requires Token)
+GET {{baseUrl}}/api/progress/user/2
+Authorization: Bearer {{token}}
+
+### ============ HEALTH CHECK ============
+
+### 20. Health Check
+GET {{baseUrl}}/health
+
+### ============ QUICK TEST FLOW ============
+### Run these in order to test the full workflow:
+
+# Step 1: Register a user
+# Step 2: Login to get token
+# Step 3: Copy token and replace {{token}} variable
+# Step 4: Create courses
+# Step 5: Update progress
+# Step 6: Get progress
+
+### Notes:
+### - Replace {{token}} with actual JWT token from login response
+### - User ID is returned after successful login (check response)
+### - Instructor ID should match a user ID in the database
+### - Course ID is returned after course creation
