@@ -30,13 +30,25 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "litu@example.com",
+  "email": "bharat@example.com",
   "password": "password123"
 }
 
 ### 4. Get Profile (Requires Token)
 GET http://localhost:3000/api/auth/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJlNmMzZGYxLTZkNjUtNGE4ZC04OTJiLTQxMzQwNjU3OTc5NyIsImVtYWlsIjoibGl0dUBleGFtcGxlLmNvbSIsImlhdCI6MTc5MTIzMjc0MywiZXhwIjoxNzkxODM3NTQzfQ.C0zPK2ezr2PfUaF8QZXtE31ANTqySaw2B9yZ-WsnlM8
+
+
+### ============ Update last Date active ============
+
+### 1. Update last active date
+POST http://localhost:3000/api/auth/activity
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNmMWJmY2U0LWYwZjItNGI0OS05YThkLTViZGQ3NWUyODg1NCIsImVtYWlsIjoiYmhhcmF0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzkxMjQxNzg2LCJleHAiOjE3OTE4NDY1ODZ9.9ZwUabZxzfC40lijaY-vglmZl2G7_-6EnOKbmRXPZ1E
+
+
+
+
 
 ### ============ COURSE ENDPOINTS ============
 

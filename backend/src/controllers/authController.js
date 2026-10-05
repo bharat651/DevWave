@@ -45,6 +45,14 @@ const login = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
+    else{
+      await pool.query(
+          `UPDATE public.users
+     SET last_active_date = CURRENT_DATE
+     WHERE id = $1`,
+          [user.id]
+      );
+    }
 
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRE,
@@ -67,5 +75,28 @@ const getProfile = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const updateDailyActivity = async (req, res) => {
+  try {
+    const result = await pool.query(
+        `UPDATE public.users
+             SET last_active_date = CURRENT_DATE
+             WHERE id = $1
+             RETURNING id, name, email, current_streak, last_active_date`,
+        [req.user.userId]
+    );
 
-module.exports = { register, login, getProfile };
+    res.status(200).json({
+      message: "Daily activity updated",
+      user: result.rows[0]
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Failed to update activity"
+    });
+  }
+};
+
+module.exports = { register, login, getProfile, updateDailyActivity };

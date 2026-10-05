@@ -2,7 +2,7 @@ const pool = require('../config/db');
 
 const getAllCourses = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM modules ORDER BY created_at DESC');
+    const result = await pool.query('SELECT * FROM modules ORDER BY order_index ASC');
     res.json(result.rows);
   } catch (error) {
     res.status(500).json({ error: error.message });
