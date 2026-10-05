@@ -10,13 +10,13 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "john@example.com",
+  "email": "litu@example.com",
   "password": "password123",
-  "name": "John Doe"
+  "name": "Litu"
 }
 
 ### 2. Register Another User (Instructor)
-POST {{baseUrl}}/api/auth/register
+POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
@@ -26,25 +26,25 @@ Content-Type: application/json
 }
 
 ### 3. Login User
-POST {{baseUrl}}/api/auth/login
+POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "john@example.com",
+  "email": "litu@example.com",
   "password": "password123"
 }
 
 ### 4. Get Profile (Requires Token)
-GET {{baseUrl}}/api/auth/profile
-Authorization: Bearer {{token}}
+GET http://localhost:3000/api/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJlNmMzZGYxLTZkNjUtNGE4ZC04OTJiLTQxMzQwNjU3OTc5NyIsImVtYWlsIjoibGl0dUBleGFtcGxlLmNvbSIsImlhdCI6MTc5MTIzMjc0MywiZXhwIjoxNzkxODM3NTQzfQ.C0zPK2ezr2PfUaF8QZXtE31ANTqySaw2B9yZ-WsnlM8
 
 ### ============ COURSE ENDPOINTS ============
 
 ### 5. Get All Courses
-GET {{baseUrl}}/api/courses
+GET http://localhost:3000/api/courses
 
 ### 6. Get Course by ID
-GET {{baseUrl}}/api/courses/1
+GET http://localhost:3000/api/courses/e96856b5-a4a0-408d-aba3-7d915458e66b
 
 ### 7. Create Course (Requires Token)
 POST {{baseUrl}}/api/courses
